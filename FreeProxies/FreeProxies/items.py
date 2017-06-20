@@ -14,6 +14,8 @@ class FreeproxiesItem(scrapy.Item):
     pass
 
 class XiciProxies(scrapy.Item):
+    from_domain = scrapy.Field()
+    from_url = scrapy.Field()
     ip_address = scrapy.Field()
     port = scrapy.Field()
     server_address = scrapy.Field()
