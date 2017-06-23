@@ -1,4 +1,4 @@
-from .main import *
+from main import *
 if __name__ == '__main__':
     app.debug = app.config['DEBUG']
     app.run()
