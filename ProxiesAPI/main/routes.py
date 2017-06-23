@@ -14,6 +14,8 @@ class Index(MethodView):
 #register the urls
 proxies_pages.add_url_rule('/', view_func=Index.as_view('index_view'))
 proxies_pages.add_url_rule('/proxies', view_func=ProxiesView.as_view('all_proxies'))
-proxies_pages.add_url_rule('/proxy/<proxy_address>', view_func=ProxyView.as_view('delete_proxy'))
+proxies_pages.add_url_rule('/proxy', view_func=ProxyView.as_view('random_proxy'))
+
+
 proxies_pages.add_url_rule('/proxy/<proxy_address>', view_func=ProxyView.as_view('single_proxy'))
 

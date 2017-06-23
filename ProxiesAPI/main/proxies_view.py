@@ -3,6 +3,7 @@ from . import mongo
 from flask import jsonify
 from bson.json_util import dumps, loads
 from utils.crawl_proxies import crawl
+import random
 class ProxiesView(MethodView):
     def get(self):
         try:
@@ -19,9 +20,12 @@ class ProxiesView(MethodView):
 
 
 class ProxyView(MethodView):
-    def get(self, proxy_address):
-        proxy = mongo.db.proxies_info.find({'ip_address': proxy_address})
-        return jsonify(dumps(proxy)),200
+    def get(self):
+        count = mongo.db.proxies_info.count()
+
+        proxy = mongo.db.proxies_info.find().limit(-1).skip(int(random.random()*(count+1))).next()
+        return jsonify(dumps(proxy)), 200
+
     def delete(self, proxy_address):
         '''
         delete one proxy
